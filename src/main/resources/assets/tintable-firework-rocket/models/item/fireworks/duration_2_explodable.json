@@ -1,0 +1,6 @@
+{
+    "parent": "tintable-firework-rocket:item/fireworks/firework_rocket_explodable",
+    "textures": {
+        "duration": "tintable-firework-rocket:item/fireworks/duration_2"
+    }
+}

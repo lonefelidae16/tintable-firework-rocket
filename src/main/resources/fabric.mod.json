@@ -1,0 +1,30 @@
+{
+	"schemaVersion": 1,
+	"id": "tintable-firework-rocket",
+	"version": "${version}",
+	"name": "Tint-able Firework Rocket",
+	"description": "",
+	"authors": [
+		"lonefelidae16"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/project/tint-able-firework-rocket",
+		"sources": "https://github.com/lonefelidae16/tintable-firework-rocket"
+	},
+	"license": "MIT",
+	"icon": "assets/tintable-firework-rocket/icon.png",
+	"environment": "client",
+	"entrypoints": {},
+	"mixins": [
+		{
+			"config": "tintable-firework-rocket.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.0",
+		"minecraft": "*",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

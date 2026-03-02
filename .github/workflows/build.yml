@@ -1,0 +1,58 @@
+# Automatically build the project and run any configured tests for every push
+# and submitted pull request. This can help catch issues that only occur on
+# certain platforms or Java versions, and provides a first line of defence
+# against bad commits.
+
+name: build
+on:
+  push:
+    branches:
+      - dev
+      - 'port/**'
+      - 'workflow/**'
+    tags:
+      - '**'
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        java: [ 21 ]
+        os: [ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Get Commit hash
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            COMMIT_SHA=${{ github.event.pull_request.head.sha }}
+          else
+            COMMIT_SHA=${GITHUB_SHA}
+          fi
+          echo "SHORT_SHA=$(echo $COMMIT_SHA | cut -c1-8)" >> $GITHUB_ENV
+
+      - name: Java ${{ matrix.java }} setup
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: 'temurin'
+
+      - name: Make gradle wrapper executable
+        if: runner.os == 'Linux'
+        run: chmod +x ./gradlew
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Gradle build
+        run: ./gradlew build
+
+      - name: Capture build artifacts
+        if: ${{ runner.os == 'Linux' }} # Only upload artifacts built from latest java on one OS
+        uses: actions/upload-artifact@v4
+        with:
+          name: "TintableFireworkRocket-dev+${{env.SHORT_SHA}}"
+          path: build/libs/

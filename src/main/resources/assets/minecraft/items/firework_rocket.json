@@ -1,0 +1,169 @@
+{
+  "model": {
+    "type": "minecraft:composite",
+    "models": [
+      {
+        "type": "minecraft:model",
+        "model": "minecraft:item/firework_rocket"
+      },
+      {
+        "type": "minecraft:model",
+        "model": "tintable-firework-rocket:item/fireworks/firework_empty"
+      },
+      {
+        "type": "minecraft:condition",
+        "property": "minecraft:component",
+        "predicate": "minecraft:fireworks",
+        "value": {
+          "explosions": {
+            "size": {
+              "min": 1
+            }
+          }
+        },
+        "on_true": {
+          "type": "minecraft:composite",
+          "models": [
+            {
+              "type": "minecraft:condition",
+              "property": "minecraft:component",
+              "predicate": "minecraft:fireworks",
+              "value": {
+                "flight_duration": 3
+              },
+              "on_true": {
+                "type": "minecraft:model",
+                "model": "tintable-firework-rocket:item/fireworks/duration_3_explodable",
+                "tints": [
+                  {
+                    "type": "constant",
+                    "value": -1
+                  },
+                  {
+                    "type": "firework_rocket_main",
+                    "default": 13369344
+                  },
+                  {
+                    "type": "firework_rocket_fade",
+                    "default": 13369344
+                  }
+                ]
+              },
+              "on_false": {
+                "type": "minecraft:empty"
+              }
+            },
+            {
+              "type": "minecraft:condition",
+              "property": "minecraft:component",
+              "predicate": "minecraft:fireworks",
+              "value": {
+                "flight_duration": 2
+              },
+              "on_true": {
+                "type": "minecraft:model",
+                "model": "tintable-firework-rocket:item/fireworks/duration_2_explodable",
+                "tints": [
+                  {
+                    "type": "constant",
+                    "value": -1
+                  },
+                  {
+                    "type": "firework_rocket_main",
+                    "default": 13369344
+                  },
+                  {
+                    "type": "firework_rocket_fade",
+                    "default": 13369344
+                  }
+                ]
+              },
+              "on_false": {
+                "type": "minecraft:empty"
+              }
+            },
+            {
+              "type": "minecraft:condition",
+              "property": "minecraft:component",
+              "predicate": "minecraft:fireworks",
+              "value": {
+                "flight_duration": 1
+              },
+              "on_true": {
+                "type": "minecraft:model",
+                "model": "tintable-firework-rocket:item/fireworks/duration_1_explodable",
+                "tints": [
+                  {
+                    "type": "constant",
+                    "value": -1
+                  },
+                  {
+                    "type": "firework_rocket_main",
+                    "default": 13369344
+                  },
+                  {
+                    "type": "firework_rocket_fade",
+                    "default": 13369344
+                  }
+                ]
+              },
+              "on_false": {
+                "type": "minecraft:empty"
+              }
+            }
+          ]
+        },
+        "on_false": {
+          "type": "minecraft:composite",
+          "models": [
+            {
+              "type": "minecraft:condition",
+              "property": "minecraft:component",
+              "predicate": "minecraft:fireworks",
+              "value": {
+                "flight_duration": 3
+              },
+              "on_true": {
+                "type": "minecraft:model",
+                "model": "tintable-firework-rocket:item/fireworks/duration_3"
+              },
+              "on_false": {
+                "type": "minecraft:empty"
+              }
+            },
+            {
+              "type": "minecraft:condition",
+              "property": "minecraft:component",
+              "predicate": "minecraft:fireworks",
+              "value": {
+                "flight_duration": 2
+              },
+              "on_true": {
+                "type": "minecraft:model",
+                "model": "tintable-firework-rocket:item/fireworks/duration_2"
+              },
+              "on_false": {
+                "type": "minecraft:empty"
+              }
+            },
+            {
+              "type": "minecraft:condition",
+              "property": "minecraft:component",
+              "predicate": "minecraft:fireworks",
+              "value": {
+                "flight_duration": 1
+              },
+              "on_true": {
+                "type": "minecraft:model",
+                "model": "tintable-firework-rocket:item/fireworks/duration_1"
+              },
+              "on_false": {
+                "type": "minecraft:empty"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
