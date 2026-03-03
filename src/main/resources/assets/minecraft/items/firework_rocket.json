@@ -40,11 +40,11 @@
                     "value": -1
                   },
                   {
-                    "type": "firework_rocket_main",
+                    "type": "tintable-firework-rocket:firework_rocket_main",
                     "default": 13369344
                   },
                   {
-                    "type": "firework_rocket_fade",
+                    "type": "tintable-firework-rocket:firework_rocket_fade",
                     "default": 13369344
                   }
                 ]
@@ -69,11 +69,11 @@
                     "value": -1
                   },
                   {
-                    "type": "firework_rocket_main",
+                    "type": "tintable-firework-rocket:firework_rocket_main",
                     "default": 13369344
                   },
                   {
-                    "type": "firework_rocket_fade",
+                    "type": "tintable-firework-rocket:firework_rocket_fade",
                     "default": 13369344
                   }
                 ]
@@ -98,11 +98,11 @@
                     "value": -1
                   },
                   {
-                    "type": "firework_rocket_main",
+                    "type": "tintable-firework-rocket:firework_rocket_main",
                     "default": 13369344
                   },
                   {
-                    "type": "firework_rocket_fade",
+                    "type": "tintable-firework-rocket:firework_rocket_fade",
                     "default": 13369344
                   }
                 ]

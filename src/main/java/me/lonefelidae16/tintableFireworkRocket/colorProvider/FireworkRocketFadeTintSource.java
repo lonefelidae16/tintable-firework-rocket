@@ -1,4 +1,4 @@
-package me.lonefelidae16.colortintprovider;
+package me.lonefelidae16.tintableFireworkRocket.colorProvider;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

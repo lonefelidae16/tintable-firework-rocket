@@ -1,6 +1,7 @@
-package me.lonefelidae16.colortintprovider;
+package me.lonefelidae16.tintableFireworkRocket.colorProvider;
 
 import it.unimi.dsi.fastutil.ints.IntList;
+import me.lonefelidae16.tintableFireworkRocket.TintableFireworkRocket;
 import net.minecraft.client.render.item.tint.TintSource;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
@@ -16,7 +17,10 @@ public interface FireworkRocketTintSourceBase extends TintSource {
         final IntList colors = gatherColors(stack);
 
         int colorLength = colors.size();
-        if (colorLength == 1) {
+        if (colorLength == 0) {
+            TintableFireworkRocket.LOGGER.error("colors.size() == 0");
+            return 0;
+        } else if (colorLength == 1) {
             return ColorHelper.fullAlpha(colors.getInt(0));
         } else {
             int redSum = 0;
