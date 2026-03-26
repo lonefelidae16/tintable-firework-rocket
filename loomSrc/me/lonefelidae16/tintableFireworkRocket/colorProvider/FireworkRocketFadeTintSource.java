@@ -4,18 +4,18 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
-import net.minecraft.client.color.item.ItemTintSource;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.util.ExtraCodecs;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.Fireworks;
+import net.minecraft.client.render.item.tint.TintSource;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.FireworksComponent;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.dynamic.Codecs;
 
 public record FireworkRocketFadeTintSource(int defaultColor) implements FireworkRocketTintSourceBase {
-    public static final MapCodec<FireworkRocketFadeTintSource> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(ExtraCodecs.RGB_COLOR_CODEC.fieldOf("default").forGetter(FireworkRocketFadeTintSource::defaultColor)).apply(instance, FireworkRocketFadeTintSource::new));
+    public static final MapCodec<FireworkRocketFadeTintSource> CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(Codecs.RGB.fieldOf("default").forGetter(FireworkRocketFadeTintSource::defaultColor)).apply(instance, FireworkRocketFadeTintSource::new));
 
     @Override
     public IntList gatherColors(ItemStack itemStack) {
-        Fireworks component = itemStack.get(DataComponents.FIREWORKS);
+        FireworksComponent component = itemStack.get(DataComponentTypes.FIREWORKS);
         if (component == null) {
             return IntList.of(this.defaultColor);
         }
@@ -39,7 +39,7 @@ public record FireworkRocketFadeTintSource(int defaultColor) implements Firework
     }
 
     @Override
-    public MapCodec<? extends ItemTintSource> type() {
+    public MapCodec<? extends TintSource> getCodec() {
         return CODEC;
     }
 }

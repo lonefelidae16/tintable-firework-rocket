@@ -2,18 +2,18 @@ package me.lonefelidae16.tintableFireworkRocket.colorProvider;
 
 import it.unimi.dsi.fastutil.ints.IntList;
 import me.lonefelidae16.tintableFireworkRocket.TintableFireworkRocket;
-import net.minecraft.client.color.item.ItemTintSource;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.util.ARGB;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.client.render.item.tint.TintSource;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.ColorHelper;
 import org.jspecify.annotations.Nullable;
 
-public interface FireworkRocketTintSourceBase extends ItemTintSource {
+public interface FireworkRocketTintSourceBase extends TintSource {
     IntList gatherColors(ItemStack itemStack);
 
     @Override
-    default int calculate(ItemStack stack, @Nullable ClientLevel world, @Nullable LivingEntity user) {
+    default int getTint(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity user) {
         final IntList colors = gatherColors(stack);
 
         int colorLength = colors.size();
@@ -21,7 +21,7 @@ public interface FireworkRocketTintSourceBase extends ItemTintSource {
             TintableFireworkRocket.LOGGER.error("colors.size() == 0");
             return 0;
         } else if (colorLength == 1) {
-            return ARGB.opaque(colors.getInt(0));
+            return ColorHelper.fullAlpha(colors.getInt(0));
         } else {
             int redSum = 0;
             int blueSum = 0;
@@ -29,12 +29,12 @@ public interface FireworkRocketTintSourceBase extends ItemTintSource {
 
             for (int i = 0; i < colorLength; ++i) {
                 int color = colors.getInt(i);
-                redSum += ARGB.red(color);
-                blueSum += ARGB.green(color);
-                greenSum += ARGB.blue(color);
+                redSum += ColorHelper.getRed(color);
+                blueSum += ColorHelper.getGreen(color);
+                greenSum += ColorHelper.getBlue(color);
             }
 
-            return ARGB.color(redSum / colorLength, blueSum / colorLength, greenSum / colorLength);
+            return ColorHelper.getArgb(redSum / colorLength, blueSum / colorLength, greenSum / colorLength);
         }
     }
 }
