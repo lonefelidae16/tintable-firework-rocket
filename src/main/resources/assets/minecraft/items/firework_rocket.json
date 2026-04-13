@@ -7,10 +7,6 @@
         "model": "minecraft:item/firework_rocket"
       },
       {
-        "type": "minecraft:model",
-        "model": "tintable-firework-rocket:item/fireworks/firework_empty"
-      },
-      {
         "type": "minecraft:condition",
         "property": "minecraft:component",
         "predicate": "minecraft:fireworks",
