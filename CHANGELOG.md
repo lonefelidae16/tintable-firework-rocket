@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.2+26.1.2] - 2026-04-13
+### 🗘 Updated
+
+* Ported to 26.1.2.
+* Updated sprites for cases where the duration is over 4 seconds.
+
 ## [1.0.1+26.1] - 2026-03-26
 ### 🗘 Updated
 
